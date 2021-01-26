@@ -1,4 +1,4 @@
-## Employee Manager
+## Servlet CRUD Web Application
 * This is a servlet web application that performs CRUD (Create, Retrieve, Update, Delete) operations on user information in Oracle Database.
 
 ## Getting Started
