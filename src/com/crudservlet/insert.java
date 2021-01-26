@@ -70,6 +70,7 @@ public class insert extends HttpServlet {
 				
 				if (i==1) {
 					printWriter.println("Data Inserted Successfully");
+					printWriter.println("<br>Your Serial Number is " + sr_no);
 				} else {
 					printWriter.println("Failed");
 				}

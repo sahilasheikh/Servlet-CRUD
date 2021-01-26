@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,27 +34,44 @@ public class update extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter printWriter = response.getWriter();
 		
+
+		int sr_no = Integer.parseInt(request.getParameter("sr_no"));
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		int number = Integer.parseInt(request.getParameter("number"));
+		
 		try {
-			
-			int sr_no = Integer.parseInt(request.getParameter("sr_no"));
-			String name = request.getParameter("name");
-			String email = request.getParameter("email");
-			String password = request.getParameter("password");
-			int number = Integer.parseInt(request.getParameter("number"));
-			
+
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
 			Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "admin");
 			
-			PreparedStatement preparedStatement_update = connection.prepareStatement("");
-			preparedStatement_update.setInt(1, sr_no);
-			preparedStatement_update.setString(2, name);
-			preparedStatement_update.setString(3, email);
-			preparedStatement_update.setString(4, password);
-			preparedStatement_update.setInt(5, number);
+			PreparedStatement preparedStatement_select = connection.prepareStatement("select max(sr_no) from crud_user");
 			
+			ResultSet resultSet = preparedStatement_select.executeQuery();
 			
-			
+			if (resultSet.next()) {
+				
+				PreparedStatement preparedStatement_insert = connection.prepareStatement("update crud_user set name=?, email=?, password=?, mobile_number=? where sr_no=?");
+				
+				preparedStatement_insert.setString(1, name);
+				preparedStatement_insert.setString(2, email);
+				preparedStatement_insert.setString(3, password);
+				preparedStatement_insert.setInt(4, number);
+				preparedStatement_insert.setInt(5, sr_no);
+				
+				int i = preparedStatement_insert.executeUpdate();
+				
+				connection.close();
+				
+				if (i==1) {
+					printWriter.println("Data Updated Successfully");
+				} else {
+					printWriter.println("Failed");
+				}
+			}
+				
 		} catch (Exception e) {
 			printWriter.println(e);
 		}
