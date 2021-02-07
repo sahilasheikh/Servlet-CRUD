@@ -2,30 +2,31 @@
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
-		<title>CRUD Servlet</title>
+		<title>Insert</title>
 	</head>
 	<body>
-		<center>
-			<form action="index" method="post">
-				<table>
-					<tr>
-						<th> <input type="submit" value="  Insert   " name="submit"> </th>
-					</tr>
-					
-					<tr>
-						<th> <input type="submit" value="Retrieve" name="submit"> </th>
-					</tr>
-					
-					<tr>
-						<th> <input type="submit" value=" Update " name="submit"> </th>
-					</tr>
-					
-					<tr>
-						<th> <input type="submit" value="  Delete  " name="submit"> </th>
-					</tr>
-					
-				</table>
-			</form>
-		</center>
+		<form action="insert" method="post">
+			<table align="center">
+				<tr>
+					<th>Name</th>
+					<td><input type="text" name="name"></td>
+				</tr>
+				<tr>
+					<th>Email</th>
+					<td><input type="email" name="email"></td>
+				</tr>
+				<tr>
+					<th>Password</th>
+					<td><input type="password" name="password"></td>
+				</tr>
+				<tr>
+					<th>Number</th>
+					<td><input type="tel" name="number"></td>
+				</tr>
+				<tr>
+					<th><input type="submit" value="SAVE"></th>
+				</tr>
+			</table>
+		</form>
 	</body>
 </html>
