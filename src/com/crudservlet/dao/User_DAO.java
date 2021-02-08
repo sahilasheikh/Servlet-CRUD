@@ -3,6 +3,9 @@ package com.crudservlet.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.crudservlet.model.User;
 
@@ -36,6 +39,62 @@ public class User_DAO {
 			e.printStackTrace();
 		}
 		return i;
+	}
+	
+//	method to retrieve table
+	public static List<User> retrieveTable() {
+		
+		List<User> users = new ArrayList<User>();
+		
+		try {
+			
+			Connection connection = User_DAO.getConnection();
+			PreparedStatement ps = connection.prepareStatement("select * from crud_user");
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				User user = new User();
+				user.setSr_no(rs.getInt(1));
+				user.setName(rs.getString(2));
+				user.setEmail(rs.getString(3));
+				user.setPassword(rs.getString(4));
+				user.setNumber(rs.getLong(5));
+				users.add(user);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return users;
+		
+	}
+	
+//	condition to retrieve a column from user data from database
+	public static User retrieve(int sr_no) {
+		
+		User user = new User();
+		
+		try {
+			
+			Connection connection = User_DAO.getConnection();
+			PreparedStatement ps = connection.prepareStatement("select * from crud_user where sr_no = ?");
+			ps.setInt(1, sr_no);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				user.setSr_no(rs.getInt(1));
+				user.setName(rs.getString(2));
+				user.setEmail(rs.getString(3));
+				user.setPassword(rs.getString(4));
+				user.setNumber(rs.getLong(5));
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return user;
+		
 	}
 	
 	

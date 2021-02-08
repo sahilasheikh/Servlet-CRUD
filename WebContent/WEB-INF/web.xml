@@ -19,4 +19,14 @@
     <servlet-name>insert</servlet-name>
     <url-pattern>/insert</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>retrievetable</display-name>
+    <servlet-name>retrievetable</servlet-name>
+    <servlet-class>com.crudservlet.web.retrievetable</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>retrievetable</servlet-name>
+    <url-pattern>/retrievetable</url-pattern>
+  </servlet-mapping>
 </web-app>
