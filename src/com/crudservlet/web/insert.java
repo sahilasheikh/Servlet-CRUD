@@ -107,7 +107,7 @@ public class insert extends HttpServlet {
 		}
 //		condition to retrieve a column from user data from database
 		else if (button.equals("RETRIEVE")) {
-			int sr_no = Integer.parseInt(request.getParameter("sr_no"));
+			int sr_no = Integer.parseInt(request.getParameter("sr_no_reterieve"));
 			
 //			setting the values
 			User user = new User();
@@ -120,6 +120,31 @@ public class insert extends HttpServlet {
 			rd.include(request, response);
 		}
 		
+//		condition to delete the employee
+		else if (button.equals("DELETE")) {
+			int sr_no = Integer.parseInt(request.getParameter("sr_no_delete"));
+			
+//			setting the values
+			User user = new User();
+			user.setSr_no(sr_no);
+			
+//			delete invocation
+			int i = User_DAO.delete(user);
+			if (i == 1) {
+				out.println("<p align=\"center\">User Deleted</p>");
+				request.getRequestDispatcher("/index.html").include(request, response);
+			} else {
+				out.println("<p align=\"center\">User not found</p>");
+				request.getRequestDispatcher("/index.html").include(request, response);
+			}
+		}
+		
+//		condition to update the user
+		else if (button.equals("UPDATE USER")) {
+			request.getRequestDispatcher("/updateUser.html").forward(request, response);
+		}
+		
+//		invalid condition
 		else {
 			out.println("Invalid Input");
 		}

@@ -29,4 +29,14 @@
     <servlet-name>retrievetable</servlet-name>
     <url-pattern>/retrievetable</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>updateUser</display-name>
+    <servlet-name>updateUser</servlet-name>
+    <servlet-class>com.crudservlet.web.updateUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>updateUser</servlet-name>
+    <url-pattern>/updateUser</url-pattern>
+  </servlet-mapping>
 </web-app>

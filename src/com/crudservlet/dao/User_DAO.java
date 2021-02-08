@@ -43,11 +43,8 @@ public class User_DAO {
 	
 //	method to retrieve table
 	public static List<User> retrieveTable() {
-		
 		List<User> users = new ArrayList<User>();
-		
 		try {
-			
 			Connection connection = User_DAO.getConnection();
 			PreparedStatement ps = connection.prepareStatement("select * from crud_user");
 			ResultSet rs = ps.executeQuery();
@@ -60,22 +57,16 @@ public class User_DAO {
 				user.setNumber(rs.getLong(5));
 				users.add(user);
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return users;
-		
 	}
 	
 //	condition to retrieve a column from user data from database
 	public static User retrieve(int sr_no) {
-		
 		User user = new User();
-		
 		try {
-			
 			Connection connection = User_DAO.getConnection();
 			PreparedStatement ps = connection.prepareStatement("select * from crud_user where sr_no = ?");
 			ps.setInt(1, sr_no);
@@ -86,17 +77,25 @@ public class User_DAO {
 				user.setEmail(rs.getString(3));
 				user.setPassword(rs.getString(4));
 				user.setNumber(rs.getLong(5));
-				
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return user;
-		
 	}
 	
-	
+//	method to delete user
+	public static int delete(User user) {
+		int i = 0;
+		try {
+			Connection connection = User_DAO.getConnection();
+					PreparedStatement ps = connection.prepareStatement("delete crud_user where sr_no = ?");
+					ps.setInt(1, user.getSr_no());
+					i = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return i;
+	}
 	
 }
