@@ -93,20 +93,12 @@ public class insert extends HttpServlet {
 //		condition to retrieve complete table from database
 		else if (button.equals("VIEW TABLE")) {
 			
-			List<User> users = User_DAO.retrieveTable();
-			
-			out.println("<table align=\"center\" border=\"1\">");
-			for (User user:users) {
-				out.println("<tr><th>" + user.getSr_no() + "</th><th>" + user.getName() + "</th><th>" + user.getEmail() + "</th><th>" + user.getPassword() + "</th><th>" + user.getNumber() + "</tr>");
-			}
-			out.println("</table>");
-			
-			RequestDispatcher rd = request.getRequestDispatcher("/index.html");
+			RequestDispatcher rd = request.getRequestDispatcher("viewTable");
 			rd.include(request, response);
 			
 		}
 //		condition to retrieve a column from user data from database
-		else if (button.equals("RETRIEVE")) {
+		else if (button.equals("SEARCH")) {
 			int sr_no = Integer.parseInt(request.getParameter("sr_no_reterieve"));
 			
 //			setting the values
@@ -119,26 +111,6 @@ public class insert extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/index.html");
 			rd.include(request, response);
 		}
-		
-//		condition to delete the employee
-		else if (button.equals("DELETE")) {
-			int sr_no = Integer.parseInt(request.getParameter("sr_no_delete"));
-			
-//			setting the values
-			User user = new User();
-			user.setSr_no(sr_no);
-			
-//			delete invocation
-			int i = User_DAO.delete(user);
-			if (i == 1) {
-				out.println("<p align=\"center\">User Deleted</p>");
-				request.getRequestDispatcher("/index.html").include(request, response);
-			} else {
-				out.println("<p align=\"center\">User not found</p>");
-				request.getRequestDispatcher("/index.html").include(request, response);
-			}
-		}
-		
 //		condition to update the user
 		else if (button.equals("UPDATE USER")) {
 			request.getRequestDispatcher("/updateUser.html").forward(request, response);

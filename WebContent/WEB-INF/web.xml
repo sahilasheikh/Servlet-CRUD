@@ -39,4 +39,34 @@
     <servlet-name>updateUser</servlet-name>
     <url-pattern>/updateUser</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>deleteUser</display-name>
+    <servlet-name>deleteUser</servlet-name>
+    <servlet-class>com.crudservlet.web.deleteUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>deleteUser</servlet-name>
+    <url-pattern>/deleteUser</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>viewTable</display-name>
+    <servlet-name>viewTable</servlet-name>
+    <servlet-class>com.crudservlet.web.viewTable</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>viewTable</servlet-name>
+    <url-pattern>/viewTable</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>updateDetails</display-name>
+    <servlet-name>updateDetails</servlet-name>
+    <servlet-class>com.crudservlet.web.updateDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>updateDetails</servlet-name>
+    <url-pattern>/updateDetails</url-pattern>
+  </servlet-mapping>
 </web-app>

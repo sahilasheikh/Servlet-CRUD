@@ -98,4 +98,24 @@ public class User_DAO {
 		return i;
 	}
 	
+//	method to delete user
+	public static int update(User user) {
+		int i = 0;
+		try {
+			Connection connection = User_DAO.getConnection();
+			PreparedStatement ps = connection.prepareStatement("update crud_user set name = ?, email = ?, password = ?, mobile_number = ? where sr_no = ?");
+			ps.setString(1, user.getName());
+			ps.setString(2, user.getEmail());
+			ps.setString(3, user.getPassword());
+			ps.setDouble(4, user.getNumber());
+			ps.setInt(5, user.getSr_no());
+			i = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return i;
+	}
+	
 }
