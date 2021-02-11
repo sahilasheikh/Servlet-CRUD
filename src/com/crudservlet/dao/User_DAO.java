@@ -98,7 +98,7 @@ public class User_DAO {
 		return i;
 	}
 	
-//	method to delete user
+//	method to update user
 	public static int update(User user) {
 		int i = 0;
 		try {
@@ -113,8 +113,6 @@ public class User_DAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 		return i;
 	}
 	
